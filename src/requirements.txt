@@ -1,0 +1,5 @@
+Flask
+requests
+connexion
+swagger_ui_bundle
+tornado

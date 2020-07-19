@@ -1,0 +1,66 @@
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: ""
+
+
+paths:
+  /System:
+    get:
+      tags:
+      - System
+      operationId: ci_api.systeminfo
+      summary: System Info
+      security: []
+      responses:
+        '200':
+          description: Return tool information
+          schema:
+            $ref: '#/definitions/SystemResponse'
+
+securityDefinitions:
+   APIKeyHeader:
+       type: apiKey
+       in: header
+       name: X-API-Key
+       x-apikeyInfoFunc: webserver.apikey_auth
+
+   basic:
+       type: basic
+       x-basicInfoFunc: webserver.basic_auth
+
+responses:
+    UnauthorizedError:
+       description: API key is missing or invalid username or password
+       headers:
+         WWW_Authenticate:
+            type: string
+
+
+definitions:
+  SystemResponse:
+    type: object
+    required:
+    - version
+    - name
+    properties:
+      version:
+        type: string
+      name:
+        type: string
+
+  System:
+    type: object
+    required:
+    - data
+    properties:
+      data:
+        $ref: '#/definitions/SystemResponse'
+
+  StatusResponse:
+    type: object
+    required:
+    - status
+    properties:
+      status:
+        type: boolean
