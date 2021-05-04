@@ -1,0 +1,3 @@
+# Run the following command to create mo files
+
+msgfmt infra.po -o infra.mo
